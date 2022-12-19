@@ -11,10 +11,10 @@ from linebot.models import (
 )
 import os
 
-#Token取得
+#Token�擾
 
-YOUR_CHANNEL_ACCESS_TOKEN = "チャネルアクセストークン"
-YOUR_CHANNEL_SECRET = "チャネルシークレット"
+YOUR_CHANNEL_ACCESS_TOKEN = "LdDn+xK36pp0W/9e0Ku2qLhuR26uv9kHYDRJEMMUiYJVbWdWzGkrMuu0X4GunvVbGojx4J4nNytHf4cqDwKYdbZ9K9MMVpOk0Fy4LxKrSpEfEb/DsqxISu/GbHZDewQZpQQDmnYIyhUBWQmYrB39xAdB04t89/1O/w1cDnyilFU="
+YOUR_CHANNEL_SECRET = "61e1f8a11f5ddfb895d3ed3b6e2f4fa9"
 
 app = Flask(__name__)
 app.debug = False
@@ -60,7 +60,7 @@ def handle_message(event):
         if url == None:
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(text='そのようなサイトは存在しません')
+                TextSendMessage(text='���̂悤�ȃT�C�g�͑��݂��܂���')
                 )
 
 
