@@ -11,13 +11,11 @@ from linebot.models import (
 )
 import os
 
-#TokenéÊìæ
-
-YOUR_CHANNEL_ACCESS_TOKEN = "YOUR_CHANNEL_ACCESS_TOKEN"
-YOUR_CHANNEL_SECRET = "YOUR_CHANNEL_SECRET"
-
 app = Flask(__name__)
-app.debug = False
+
+#ä¬ã´ïœêîéÊìæ
+YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
+YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
@@ -39,31 +37,15 @@ def callback():
 
     return 'OK'
 
+
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    df_list = [
-        ['Google','https://www.google.com/'],
-        ['yahoo','https://www.yahoo.co.jp/'],
-        ]
-
-    for i in range(len(df_list)):
-        url = None
-        if event.message.text == df_list[i][0]:
-            url = df_list[i][1]
-            line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text=url)
-                )
-        else:
-            continue
-
-        if url == None:
-            line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text='ÇªÇÃÇÊÇ§Ç»ÉTÉCÉgÇÕë∂ç›ÇµÇ‹ÇπÇÒ')
-                )
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=event.message.text))
 
 
 if __name__ == "__main__":
-    port = int(os.getenv("PORT"))
+#    app.run()
+    port = int(os.getenv("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
