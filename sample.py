@@ -10,8 +10,8 @@ from linebot.models import (
 
 from linebot import LineBotApi, WebhookHandler
 
-line_bot_api = LineBotApi(channel_access_token=CHANNEL_ACCESS_TOKEN)
-handler = WebhookHandler(channel_secret=LINE_ACCESS_SECRET)
+line_bot_api = LineBotApi(channel_access_token="YOUR_CHANNEL_ACCESS_TOKEN")
+handler = WebhookHandler(channel_secret="YOUR_CHANNEL_SECRET")
 
 
 def callback(request):
