@@ -8,8 +8,6 @@ from linebot.models import (
 
 from linebot import LineBotApi, WebhookHandler
 
-
-# 各クライアントライブラリのインスタンス作成
 line_bot_api = LineBotApi(channel_access_token=CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(channel_secret=LINE_ACCESS_SECRET)
 
