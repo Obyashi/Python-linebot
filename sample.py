@@ -22,8 +22,6 @@ def callback(request):
     return HttpResponse('OK')
 
 
-
-# フォローイベントの場合の処理
 @handler.add(FollowEvent)
 def handle_follow(event):
     line_bot_api.reply_message(
