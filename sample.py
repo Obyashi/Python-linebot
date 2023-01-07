@@ -13,11 +13,9 @@ handler = WebhookHandler(channel_secret=LINE_ACCESS_SECRET)
 
 
 def callback(request):
-    # signatureの取得
     signature = request.META['HTTP_X_LINE_SIGNATURE']
     body = request.body.decode('Shift-JIS')
     try:
-        # 署名の検証を行い、成功した場合にhandleされたメソッドを呼び出す
         handler.handle(body, signature)
     except InvalidSignatureError:
         return HttpResponseForbidden()
@@ -33,11 +31,8 @@ def handle_follow(event):
         TextSendMessage(text='初めまして')
     )
 
-
-# メッセージイベントの場合の処理
 @handler.add(MessageEvent, message=TextMessage)
 def handle_text_message(event):
-    # メッセージでもテキストの場合はオウム返しする
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=event.message.text)
@@ -45,7 +40,6 @@ def handle_text_message(event):
 
 @handler.add(MessageEvent, message=(ImageMessage, AudioMessage))
 def handle_image_audio_message(event):
-    # 画像と音源の場合は保存する
     content = line_bot_api.get_message_content(event.message.id)
     with open('file', 'w') as f:
         for c in content.iter_content():
