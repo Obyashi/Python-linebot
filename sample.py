@@ -1,4 +1,5 @@
-
+#!/usr/bin/python
+# -*- coding: Shift-JIS -*-
 from flask import Flask, request, abort
 import os
 
