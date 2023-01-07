@@ -17,7 +17,7 @@ handler = WebhookHandler(channel_secret=LINE_ACCESS_SECRET)
 def callback(request):
     # signatureの取得
     signature = request.META['HTTP_X_LINE_SIGNATURE']
-    body = request.body.decode('utf-8')
+    body = request.body.decode('Shift-JIS')
     try:
         # 署名の検証を行い、成功した場合にhandleされたメソッドを呼び出す
         handler.handle(body, signature)
