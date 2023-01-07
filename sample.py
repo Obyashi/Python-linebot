@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: Shift-JIS -*-
 from django.http import HttpResponseForbidden, HttpResponse
 
 from linebot.exceptions import InvalidSignatureError
